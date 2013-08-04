@@ -12,13 +12,14 @@ $(document).ready(function(){
 function createExercise(index, currentExercise){
 
   var elementHeader = $("<li>")
-    .html($("<a>").attr("data-toggle","tab")
-                  .attr("href", "#" + currentExercise.key)
-                  .html(currentExercise.title));
+  .html($("<a>").attr("data-toggle","tab")
+    .attr("href", "#" + currentExercise.key)
+    .html(currentExercise.title));
 
+  //container element
   var elementBody = $("<div>")
-        .addClass("tab-pane")
-        .attr("id", currentExercise.key);
+  .addClass("tab-pane")
+  .attr("id", currentExercise.key);
 
   if(index == 0){
     elementHeader.addClass("active");
@@ -28,9 +29,9 @@ function createExercise(index, currentExercise){
   $("#tab-header").append(elementHeader);
 
   var elementDescription = $("<p>")
-                .addClass("description")
-                .addClass("lead")
-                .html(currentExercise.description);
+  .addClass("description")
+  .addClass("lead")
+  .html(currentExercise.description);
   elementBody.append(elementDescription);
 
   if(currentExercise.code){
