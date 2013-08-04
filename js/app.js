@@ -39,5 +39,10 @@ function createExercise(index, currentExercise){
     elementBody.append(elementCode);
   }
 
+  var myCodeMirror = CodeMirror(elementDescription.get(0), {
+  value: "function myScript(){return 100;}\n",
+  mode:  "javascript"
+});
+
   $(".tab-content").append(elementBody);
 }
