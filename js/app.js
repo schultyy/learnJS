@@ -15,17 +15,28 @@ function createExercise(index, currentExercise){
     .html($("<a>").attr("data-toggle","tab")
                   .attr("href", "#" + currentExercise.key)
                   .html(currentExercise.title));
-  if(index == 0)
-    elementHeader.addClass("active");
 
-  $("#tab-header").append(elementHeader);
   var elementBody = $("<div>")
         .addClass("tab-pane")
-        .attr("id", currentExercise.key)
-        .html(currentExercise.description);
+        .attr("id", currentExercise.key);
 
-  if(index == 0)
+  if(index == 0){
+    elementHeader.addClass("active");
     elementBody.addClass("active");
+  } 
+
+  $("#tab-header").append(elementHeader);
+
+  var elementDescription = $("<p>")
+                .addClass("description")
+                .addClass("lead")
+                .html(currentExercise.description);
+  elementBody.append(elementDescription);
+
+  if(currentExercise.code){
+    var elementCode = $("<pre>").html(currentExercise.code);
+    elementBody.append(elementCode);
+  }
 
   $(".tab-content").append(elementBody);
 }
