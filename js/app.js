@@ -71,6 +71,8 @@ function createExercise(index, currentExercise){
   elementBody.append($("<button>").addClass("btn")
                                   .text("Evaluate")
                                   .click(function(){
-                                    alert(editor.getValue());
+                                    var userCode = evaluate(editor.getValue());
+                                    var results = testCatalog[currentExercise.key](userCode);
+                                    alert(JSON.stringify(results));
                                   }));
 }
