@@ -27,7 +27,7 @@ function createExercise(index, currentExercise){
     .html(currentExercise.title))
   .click(function(){
     setTimeout(function(){
-      $("#editor-" + currentExercise.key).refresh();
+      $("#editor-" + currentExercise.key).focus();
     },100);    
   });
 
@@ -54,21 +54,23 @@ function createExercise(index, currentExercise){
     code = currentExercise.code;
   }
 
+
   elementBody.append($("<textarea>").attr("id", "editor-" + currentExercise.key)
                                 .attr("display", "none")
+                                .addClass("code-editor")
                                 .text(code));
 
   $(".tab-content").append(elementBody);
 
-var editor = CodeMirror.fromTextArea($("#editor-" + currentExercise.key).get(0),{
+    var editor = CodeMirror.fromTextArea($("#editor-" + currentExercise.key).get(0),{
             value: code,
             mode:  "javascript",
             lineNumbers: true
-    });  
+    });
 
-  // var editor = CodeMirror($("#editor-" + currentExercise.key).get(0), {
-  //   value: code,
-  //   mode:  "javascript",
-  //   lineNumbers: true
-  // });
+  elementBody.append($("<button>").addClass("btn")
+                                  .text("Evaluate")
+                                  .click(function(){
+                                    alert(editor.getValue());
+                                  }));
 }

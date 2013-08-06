@@ -15,3 +15,11 @@
 .code{
   font-family: Courier;
 }
+
+.code-editor{
+  width: 600px;
+  height: 150px;
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+}
