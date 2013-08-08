@@ -2,22 +2,20 @@ var PASSED = "Passed";
 var FAILED = "Failed";
 
 var testCatalog = {
-  "exc_3" : function(objUnderTest){
+  "exc_3" : function(usercode){
     results = [];
-    results.push(assert(objUnderTest.store, "Does not have a store object"));
-    results.push(assert(objUnderTest.store.nextId, "Store does not have a next nextId property"));
+    eval(usercode);
+    try{
+      results.push(assert(store, "Does not have a store object"));
+      results.push(store.hasOwnProperty(nextId), "Store does not have a next nextId property");
+    }
+    catch(error){
+      results.push(error);
+    }
+    
     return results;
   }
 };
-
-function evaluate(codeStr){
-  return (function(code){
-    function inner(){
-      eval(code);
-    }
-    return new inner();
-  })(codeStr);
-}
 
 function assert(expression, message){
   var testSuceeded = expression == true;
