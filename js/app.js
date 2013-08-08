@@ -72,6 +72,21 @@ function createExercise(index, currentExercise){
                                   .text("Evaluate")
                                   .click(function(){
                                     var results = testCatalog[currentExercise.key](editor.getValue());
-                                    alert(JSON.stringify(results));
+                                    showTestResults(elementBody, results);  
                                   }));
+}
+
+function showTestResults(container, results){
+  for (var i = 0; i < results.length; i++) {
+    var currentResult = results[i];
+    var paragraph = $("<p>").text(currentResult.message);
+
+    if(currentResult.status.toLowerCase() == "passed"){
+      paragraph.addClass("test-success");
+    }
+    else{
+      paragraph.addClass("test-failure");
+    }
+    container.prepend(paragraph);
+  }
 }

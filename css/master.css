@@ -23,3 +23,16 @@
   border-style: solid;
   border-color: black;
 }
+
+.test-success{
+  background: green;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.test-failure{
+  background: red;
+  font-size: 16px;
+  text-decoration: line-through;
+  padding: 5px;
+}

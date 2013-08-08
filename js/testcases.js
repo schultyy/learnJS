@@ -6,11 +6,11 @@ var testCatalog = {
     results = [];
     eval(usercode);
     try{
-      results.push(assert(store, "Does not have a store object"));
-      results.push(store.hasOwnProperty(nextId), "Store does not have a next nextId property");
+      results.push(assert(typeof store != 'undefined', "store is defined"));
+      results.push(assert(store.hasOwnProperty(nextId), "Store does not have a next nextId property"));
     }
     catch(error){
-      results.push(error);
+      
     }
     
     return results;
