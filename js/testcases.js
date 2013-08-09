@@ -20,7 +20,7 @@ var testCatalog = {
 function assert(expression, message){
   var testSuceeded = expression == true;
   if(testSuceeded){
-    return new TestResults("Passed");
+    return new TestResults("Passed", message);
   }
   return new TestResults("Failed", message);
 }

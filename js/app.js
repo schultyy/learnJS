@@ -54,11 +54,20 @@ function createExercise(index, currentExercise){
     code = currentExercise.code;
   }
 
+  elementBody.append($("<div>").attr("id", "result-" + currentExercise.key));
 
   elementBody.append($("<textarea>").attr("id", "editor-" + currentExercise.key)
                                 .attr("display", "none")
                                 .addClass("code-editor")
                                 .text(code));
+  
+
+  elementBody.append($("<button>").addClass("btn")
+                                  .text("Evaluate")
+                                  .click(function(){
+                                    var results = testCatalog[currentExercise.key](editor.getValue());
+                                    showTestResults($("#result-" + currentExercise.key), results);  
+                                  }));
 
   $(".tab-content").append(elementBody);
 
@@ -68,25 +77,20 @@ function createExercise(index, currentExercise){
             lineNumbers: true
     });
 
-  elementBody.append($("<button>").addClass("btn")
-                                  .text("Evaluate")
-                                  .click(function(){
-                                    var results = testCatalog[currentExercise.key](editor.getValue());
-                                    showTestResults(elementBody, results);  
-                                  }));
+
 }
 
 function showTestResults(container, results){
   for (var i = 0; i < results.length; i++) {
     var currentResult = results[i];
     var paragraph = $("<p>").text(currentResult.message);
-
+    container.empty();
     if(currentResult.status.toLowerCase() == "passed"){
       paragraph.addClass("test-success");
     }
     else{
       paragraph.addClass("test-failure");
     }
-    container.prepend(paragraph);
+    container.append(paragraph);
   }
 }
