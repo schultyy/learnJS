@@ -81,10 +81,10 @@ function createExercise(index, currentExercise){
 }
 
 function showTestResults(container, results){
+  container.empty();
   for (var i = 0; i < results.length; i++) {
     var currentResult = results[i];
     var paragraph = $("<p>").text(currentResult.message);
-    container.empty();
     if(currentResult.status.toLowerCase() == "passed"){
       paragraph.addClass("test-success");
     }

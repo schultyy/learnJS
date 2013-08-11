@@ -6,8 +6,8 @@ var testCatalog = {
     results = [];
     eval(usercode);
     try{
-      results.push(assert(typeof store != 'undefined', "store is defined"));
-      results.push(assert(store.hasOwnProperty(nextId), "Store does not have a next nextId property"));
+      results.push(assert(typeof store !== 'undefined', "store is defined"));
+      results.push(assert(store.hasOwnProperty("nextId"), "Store has a next nextId property"));
     }
     catch(error){
       
@@ -18,14 +18,8 @@ var testCatalog = {
 };
 
 function assert(expression, message){
-  var testSuceeded = expression == true;
-  if(testSuceeded){
-    return new TestResults("Passed", message);
+  if(expression){
+    return {status: "Passed",message: message};
   }
-  return new TestResults("Failed", message);
-}
-
-function TestResults(status, message){
-  this.status = status;
-  this.message = message;
+  return {status: "Failed",message: message};
 }

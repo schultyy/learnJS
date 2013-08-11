@@ -25,13 +25,13 @@
 }
 
 .test-success{
-  background: green;
+  background: #9ACD32;
   font-size: 16px;
   padding: 5px;
 }
 
 .test-failure{
-  background: red;
+  background: #FF4500;
   font-size: 16px;
   text-decoration: line-through;
   padding: 5px;
